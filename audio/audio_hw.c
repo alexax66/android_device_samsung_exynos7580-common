@@ -1779,6 +1779,10 @@ exit:
         // thereby accounting for fill in the alsa buffer during the interim.
     }
 
+    if (bytes > 0) {
+        in->frames_read += bytes / audio_stream_in_frame_size(stream);
+    }
+
     pthread_mutex_unlock(&in->lock);
     return bytes;
 }
